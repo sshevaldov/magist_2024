@@ -1,0 +1,81 @@
+{
+	"inputVariables": [
+	{
+		"name": "уже_есть_кредит",
+		"values": [
+		{
+			"fuzzyTerm": "да",
+			"value": 10
+		},
+		{
+			"fuzzyTerm": "нет",
+			"value": 20
+		}]
+	},
+	{
+		"name": "возраст",
+		"values": [
+		{
+			"fuzzyTerm": "молодой",
+			"value": 35
+		},
+		{
+			"fuzzyTerm": "средний",
+			"value": 45
+		},
+		{
+			"fuzzyTerm": "старый",
+			"value": 65
+		}]
+	},
+	{
+		"name": "доход",
+		"values": [
+		{
+			"fuzzyTerm": "низкий",
+			"value": 50000
+		},
+		{
+			"fuzzyTerm": "средний",
+			"value": 100000
+		},
+		{
+			"fuzzyTerm": "высокий",
+			"value": 500000
+		}]
+	}],
+	"outputVariable":
+	{
+		"name": "кредит",
+		"values": [
+		{
+			"fuzzyTerm": "нет_кредита",
+			"value": 0
+		},
+		{
+			"fuzzyTerm": "небольшой",
+			"value": 50000
+		},
+		{
+			"fuzzyTerm": "средний",
+			"value": 100000
+		},
+		{
+			"fuzzyTerm": "большой",
+			"value": 200000
+		}]
+	},
+	"rules": [
+		"if доход is высокий and возраст is молодой then кредит is большой",
+		"if доход is высокий and возраст is средний then кредит is средний",
+		"if доход is высокий and возраст is старый then кредит is средний",
+		"if доход is низкий and возраст is молодой then кредит is небольшой",
+		"if доход is высокий and возраст is старый and уже_есть_кредит is да then кредит is нет_кредита"
+	],
+	"values":
+	{
+		"доход": 200000,
+		"возраст": 60,
+		"уже_есть_кредит": 10
+	}
+}
